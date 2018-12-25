@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CompanionApp_Testing.Views.QrScanCodePage">
+    <StackLayout>
+        <Label Text="I am QR Code Page!" />
+        <Button Text="Scan QR Code" Clicked="Button_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" />
+        <Label Text ="QRCode OutPut: " x:Name="LabelText1"/>
+        <Button x:Name ="ListButton"  Text="List User" Clicked="Button1_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" />
+    </StackLayout>
+</ContentPage>

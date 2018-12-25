@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CompanionApp_Testing.Views.UserDetailsPage"
+             Title="{Binding Title}">
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="DisplayName:" FontSize="Medium" />
+        <Label Text="{Binding DisplayName}" FontSize="Small"/>
+        <Label Text="UserPrincipalName:" FontSize="Small" />
+        <Editor x:Name= "UPN" Text="{Binding UserPrincipalName}" FontSize="Small" />
+        <Button Text="Assign User" Clicked="AddItem_Clicked"/>
+    </StackLayout>
+</ContentPage>
+    
