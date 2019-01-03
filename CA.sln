@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionApp_Testing.Android", "CA\CompanionApp_Testing.Android\CompanionApp_Testing.Android.csproj", "{B2BE22CC-4946-4ED3-B143-BF584C8ED703}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionApp.Android", "CA\CompanionApp.Android\CompanionApp.Android.csproj", "{B2BE22CC-4946-4ED3-B143-BF584C8ED703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionApp_Testing.iOS", "CA\CompanionApp_Testing.iOS\CompanionApp_Testing.iOS.csproj", "{AA5F54F3-A71D-414A-B55C-7B5026724D74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionApp.iOS", "CA\CompanionApp.iOS\CompanionApp.iOS.csproj", "{AA5F54F3-A71D-414A-B55C-7B5026724D74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionApp_Testing.UWP", "CA\CompanionApp_Testing.UWP\CompanionApp_Testing.UWP.csproj", "{7EDA8427-D685-4748-AD33-6C32EF5348FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionApp.UWP", "CA\CompanionApp.UWP\CompanionApp.UWP.csproj", "{7EDA8427-D685-4748-AD33-6C32EF5348FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionApp_Testing", "CA\CompanionApp_Testing\CompanionApp_Testing.csproj", "{67E1B2CC-6496-4207-BFBA-39C57C3A90EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanionApp", "CA\CompanionApp\CompanionApp.csproj", "{67E1B2CC-6496-4207-BFBA-39C57C3A90EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
