@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:CompanionApp_Testing.Views"
-             x:Class="CompanionApp_Testing.Views.MainPage">
+             xmlns:views="clr-namespace:CompanionApp.Views"
+             x:Class="CompanionApp.Views.MainPage">
 
     <MasterDetailPage.Master>
         <views:MenuPage />
