@@ -14,18 +14,16 @@ namespace CompanionApp.Services
     class IntuneDataStore : IIntuneDataStore<User>
     {
         HttpClient graphClient;
-        Uri redirectUri = new Uri("urn:ietf:wg:oauth:2.0:oob");
-        IPlatformParameters platformParameters;
-        string tokenCache;
+
         public IntuneDataStore()
         {
-            platformParameters = DependencyService.Get<IADALAuthenticator>().PlatformParameters;
+
         }
+
         public async Task<bool> AssignUserAsync(User user, Guid deviceId)
         {
-            var token = await this.GetTokenCache();
+            var token = ADALAuthentication.Instance.AuthResult.AccessToken;
             graphClient = new HttpClient();
-
             graphClient.DefaultRequestHeaders.Add("Authorization", token);
 
             var data = new
@@ -52,7 +50,7 @@ namespace CompanionApp.Services
         public async Task<IEnumerable<User>> ListAllUsersAsync()
         {
             List<User> users = new List<User>();
-            var token = await this.GetTokenCache();
+            var token = ADALAuthentication.Instance.AuthResult.AccessToken;
             graphClient = new HttpClient();
             graphClient.DefaultRequestHeaders.Add("Authorization", token);
 
@@ -83,31 +81,38 @@ namespace CompanionApp.Services
 
         public async Task LogOutUser()
         {
-            tokenCache = string.Empty;
-            DependencyService.Get<IADALAuthenticator>().PlatformParameters = null;
+            // DependencyService.Get<IADALAuthenticator>().PlatformParameters = null;
         }
 
-        async Task<string> GetTokenCache()
+        public async Task<Info> GetInfo()
         {
-            if (string.IsNullOrEmpty(tokenCache))
+            Info i = new Info();
+
+            var token = ADALAuthentication.Instance.AuthResult.AccessToken;
+            graphClient = new HttpClient();
+            graphClient.DefaultRequestHeaders.Add("Authorization", token);
+
+            var result = await graphClient.GetStringAsync("https://graph.microsoft.com/v1.0/organization");
+
+            JToken jtokenResult = JsonConvert.DeserializeObject<JToken>(result);
+            JArray JsonValues = jtokenResult["value"] as JArray;
+
+            foreach (var item in JsonValues)
             {
-                AuthenticationResult authenticationResult = await this.GetAuthorizationHeader();
-                tokenCache = authenticationResult.CreateAuthorizationHeader();
+                i.TenantID = item["id"].Value<string>();
+                i.TenantDisplayName = item["displayName"].Value<string>();
+                JArray domains = item["verifiedDomains"] as JArray;
+                foreach (var domain in domains)
+                {
+                    if (domain["isInitial"].Value<bool>())
+                    {
+                        i.TenantName = domain["name"].Value<string>();
+                    }
+                }
             }
-            return tokenCache;
+
+            return await Task.FromResult(i);
         }
 
-        async Task<AuthenticationResult> GetAuthorizationHeader()
-        {
-            string applicationId = "4253c270-b756-4c48-9e28-8f202b6798ec";
-            string authority = "https://login.microsoftonline.com/common/";
-            //Uri redirectUri = new Uri("urn:ietf:wg:oauth:2.0:oob");
-            //Uri redirectUri = new Uri("ms-app://s-1-15-2-3098116164-3842758157-1170788177-1493719480-3788797704-593311791-301083370/");
-
-            AuthenticationContext context = new AuthenticationContext(authority);
-            AuthenticationResult result = await context.AcquireTokenAsync("https://graph.microsoft.com", applicationId, redirectUri, this.platformParameters);
-
-            return result;
-        }
     }
 }

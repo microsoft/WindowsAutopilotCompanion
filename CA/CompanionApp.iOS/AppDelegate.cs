@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Foundation;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using UIKit;
+using Xamarin.Forms;
 
 namespace CompanionApp.iOS
 {
@@ -23,17 +22,8 @@ namespace CompanionApp.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            var controller = UIApplication.SharedApplication.KeyWindow.RootViewController;
-
-            ADALAuthenticator aDALAuthenticator = new ADALAuthenticator();
-            IPlatformParameters PlatformParameters = new PlatformParameters(controller, true, PromptBehavior.SelectAccount);
-            IPlatformParameters PlatformParametersLogout = new PlatformParameters(controller, true, PromptBehavior.Auto);
-            aDALAuthenticator.PlatformParameters = PlatformParameters;
-            aDALAuthenticator.LogoutPlatformParameters = PlatformParametersLogout;
-
-            LoadApplication(new App(aDALAuthenticator));
-
+            Forms.Init();
+            LoadApplication(new App());
             return base.FinishedLaunching(app, options);
         }
     }

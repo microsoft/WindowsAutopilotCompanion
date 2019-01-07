@@ -10,11 +10,9 @@ namespace CompanionApp.ViewModel
         {
             Title = "About";
 
-            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
-            //LogoutCommand = new Command(async () => await this.DataStore.LogOutUser());
+            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://aka.ms/WindowsAutopilotDocs")));
         }
 
         public ICommand OpenWebCommand { get; }
-        public ICommand LogoutCommand { get; }
     }
 }

@@ -2,6 +2,7 @@
 {
     public enum MenuItemType
     {
+        Info,
         ScanQR,
         Browse,
         About,

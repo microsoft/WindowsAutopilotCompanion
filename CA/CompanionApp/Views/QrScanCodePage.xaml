@@ -5,6 +5,6 @@
     <StackLayout>
         <Button Text="Scan QR Code" Clicked="Button_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" />
         <Label Text ="" x:Name="LabelText1"/>
-        <Button x:Name ="ListButton"  Text="List of Users" Clicked="Button1_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" />
+        <Button x:Name ="ListButton"  Text="List Users" Clicked="Button1_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" />
     </StackLayout>
 </ContentPage>

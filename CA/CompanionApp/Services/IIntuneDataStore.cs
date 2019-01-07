@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompanionApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,6 +11,6 @@ namespace CompanionApp.Services
         Task<IEnumerable<T>> SearchUserAsync(string userName);
         Task<IEnumerable<T>> ListAllUsersAsync();
         Task LogOutUser();
-
+        Task<Info> GetInfo();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using CompanionApp.Services;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 
 [assembly: Xamarin.Forms.Dependency(typeof(CompanionApp.UWP.ADALAuthenticator))]
@@ -6,16 +7,12 @@ namespace CompanionApp.UWP
 {
     public class ADALAuthenticator : IADALAuthenticator
     {
-        public IPlatformParameters PlatformParameters
+        public Task<AuthenticationResultCode> Authenticate(string resource, string clientId, string returnUri)
         {
-            get;
-            set;
-        }
+            // IPlatformParameters PlatformParametersLogout = new PlatformParameters(PromptBehavior.Auto, true);
 
-        public IPlatformParameters LogoutPlatformParameters
-        {
-            get;
-            set;
+            ADALAuthentication.Instance.platformParameters = new PlatformParameters(PromptBehavior.SelectAccount, true);
+            return ADALAuthentication.Instance.Authenticate(resource, clientId, returnUri);
         }
     }
 }

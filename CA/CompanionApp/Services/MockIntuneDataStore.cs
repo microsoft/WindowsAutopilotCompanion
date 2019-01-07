@@ -29,12 +29,22 @@ namespace CompanionApp.Services
 
         public Task LogOutUser()
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+            return null;
         }
 
         public async Task<IEnumerable<User>> SearchUserAsync(string userName)
         {
             return await Task.FromResult(users);
+        }
+
+        public async Task<Info> GetInfo()
+        {
+            Info i = new Info();
+            i.TenantDisplayName = "Demo Tenant (Simulated)";
+            i.TenantID = (new Guid()).ToString();
+            i.TenantName = "contoso.onmicrosoft.com";
+            return await Task.FromResult(i);
         }
     }
 }

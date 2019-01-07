@@ -14,7 +14,6 @@ namespace CompanionApp.Views
         public MainPage()
         {
             InitializeComponent();
-            MasterBehavior = MasterBehavior.Popover;
         }
 
         public async Task NavigateFromMenu(int id)

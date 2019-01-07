@@ -11,23 +11,10 @@ namespace CompanionApp
 {
     public partial class App : Application
     {
-        public App(IADALAuthenticator platformParameters)
+        public App()
         {
-            try
-            {
-                InitializeComponent();
-
-                DependencyService.Register<IntuneDataStore>();
-                DependencyService.Resolve<IADALAuthenticator>().PlatformParameters = platformParameters.PlatformParameters;
-                DependencyService.Resolve<IADALAuthenticator>().LogoutPlatformParameters = platformParameters.LogoutPlatformParameters;
-                MainPage = new MainPage();
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e.Data);
-                Debug.WriteLine(e.InnerException);
-            }
+            InitializeComponent();
+            MainPage = new NavigationPage(new LogonPage());
         }
 
         protected override void OnStart()

@@ -17,15 +17,16 @@ namespace CompanionApp.Views
             InitializeComponent();
             menuItems = new List<HomeMenuItem>
             {
+                new HomeMenuItem {Id = MenuItemType.Info, Title="Info" },
                 new HomeMenuItem {Id = MenuItemType.ScanQR, Title="Scan QR Page" },
                 //new HomeMenuItem {Id = MenuItemType.Browse, Title="List User" },
-                new HomeMenuItem {Id = MenuItemType.Logout, Title="Logout" }
+                new HomeMenuItem {Id = MenuItemType.Logout, Title="Logout" },
+                new HomeMenuItem {Id = MenuItemType.About, Title="About"}
             };
 
             ListViewMenu.ItemsSource = menuItems;
-
             ListViewMenu.SelectedItem = menuItems[0];
-            ListViewMenu.BackgroundColor = Color.White;
+            ListViewMenu.BackgroundColor = Color.LightGray;
             ListViewMenu.ItemSelected += async (sender, e) =>
             {
                 if (e.SelectedItem == null)
@@ -38,7 +39,6 @@ namespace CompanionApp.Views
                     ListViewMenu.IsVisible = false;
                     ListViewMenu.SeparatorVisibility = SeparatorVisibility.None;
                     RootPage.Master.IsVisible = false;
-
                 }
                 await RootPage.NavigateFromMenu(id);
             };

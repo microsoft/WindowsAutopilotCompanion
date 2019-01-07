@@ -4,6 +4,7 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Xamarin.Forms;
 
 namespace CompanionApp.Droid
 {
@@ -16,13 +17,8 @@ namespace CompanionApp.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            ADALAuthenticator aDALAuthenticator = new ADALAuthenticator();
-            IPlatformParameters PlatformParameters = new PlatformParameters(this, true, PromptBehavior.SelectAccount);
-            IPlatformParameters PlatformParametersLogout = new PlatformParameters(this, true, PromptBehavior.SelectAccount);
-            aDALAuthenticator.PlatformParameters = PlatformParameters;
-            aDALAuthenticator.LogoutPlatformParameters = PlatformParametersLogout;
-            LoadApplication(new App(aDALAuthenticator));
+            Forms.Init(this, savedInstanceState);
+            LoadApplication(new App());
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
