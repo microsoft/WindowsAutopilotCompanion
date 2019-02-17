@@ -26,7 +26,7 @@ namespace CompanionApp.Views
             }
             else
             {
-                await DisplayAlert("User Assigned Status", "User assignement successfull", "OK");
+                await DisplayAlert("User Assigned Status", "User assignement unsuccessfull", "OK");
             }
         }
 
