@@ -10,7 +10,7 @@
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="RoyalBlue">
-            <Label Text="Windows Autopilot Companion" FontSize="30" TextColor="White" HorizontalTextAlignment="Center" HeightRequest="50" VerticalOptions="CenterAndExpand" />
+            <Label Text="Windows Autopilot Companion" FontSize="30" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" />
             <Label x:Name="results" Text="{Binding Results}" />
             <StackLayout Orientation="Horizontal" BackgroundColor="White">
                 <Button Text="Logon" HorizontalOptions="FillAndExpand" Command="{Binding LogonCommand}"></Button>

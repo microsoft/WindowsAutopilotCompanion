@@ -13,7 +13,7 @@ namespace CompanionApp.Droid
         {
             // IPlatformParameters PlatformParametersLogout = new PlatformParameters(this, true, PromptBehavior.SelectAccount);
 
-            ADALAuthentication.Instance.platformParameters = new PlatformParameters((Activity)Android.App.Application.Context, true, PromptBehavior.SelectAccount);
+            ADALAuthentication.Instance.platformParameters = new PlatformParameters((Activity)Forms.Context, true, PromptBehavior.SelectAccount);
             return ADALAuthentication.Instance.Authenticate(resource, clientId, returnUri);
         }
 
