@@ -32,7 +32,7 @@ namespace CompanionApp.Services
                 addressableUserName = user.DisplayName
             };
 
-            var serializedItem = JsonConvert.SerializeObject(user);
+            var serializedItem = JsonConvert.SerializeObject(data);
 
             string stringUrlassignUserUrl = string.Format("https://graph.microsoft.com/beta/devicemanagement/windowsAutopilotDeviceIdentities/{0}/AssignUserTodevice", deviceId);
             var result = await graphClient.PostAsync(
