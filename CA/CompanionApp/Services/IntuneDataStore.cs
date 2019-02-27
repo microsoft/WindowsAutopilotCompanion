@@ -47,6 +47,33 @@ namespace CompanionApp.Services
             return await Task.FromResult(true);
         }
 
+        public async Task<bool> UnAssignUserAsync(User user, Guid deviceId)
+        {
+            var token = ADALAuthentication.Instance.AuthResult.AccessToken;
+            graphClient = new HttpClient();
+            graphClient.DefaultRequestHeaders.Add("Authorization", token);
+
+            var data = new
+            {
+                userPrincipalName = user.UserPrincipalName,
+                addressableUserName = user.DisplayName
+            };
+
+            var serializedItem = JsonConvert.SerializeObject(data);
+
+            string stringUrlassignUserUrl = string.Format("https://graph.microsoft.com/beta/devicemanagement/windowsAutopilotDeviceIdentities/{0}/unassignUserFromDevice", deviceId);
+            var result = await graphClient.PostAsync(
+                stringUrlassignUserUrl,
+                new StringContent(serializedItem, Encoding.UTF8, "application/json"));
+
+            if (result.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                return await Task.FromResult(false);
+            }
+
+            return await Task.FromResult(true);
+        }
+
         public async Task<IEnumerable<User>> ListAllUsersAsync()
         {
             List<User> users = new List<User>();

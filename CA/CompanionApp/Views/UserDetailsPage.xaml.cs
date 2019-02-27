@@ -30,6 +30,20 @@ namespace CompanionApp.Views
             }
         }
 
+        public async void AddItem_Clicked2(object sender, EventArgs e)
+        {
+            bool returnValue = await viewModel.DataStore.UnAssignUserAsync(new User() { DisplayName = viewModel.DisplayName, UserPrincipalName = viewModel.UserPrincipalName }, new Guid(viewModel.ZtdId));
+            // Fix the condition
+            if (returnValue)
+            {
+                await DisplayAlert("User Assigned Status", "User unassignement successfull", "OK");
+            }
+            else
+            {
+                await DisplayAlert("User Assigned Status", "User unassignement unsuccessfull", "OK");
+            }
+        }
+
         public async void AddItem_Clicked1(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new QrScanCodePage());

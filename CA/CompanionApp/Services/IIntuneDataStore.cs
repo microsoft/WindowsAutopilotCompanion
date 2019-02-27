@@ -8,6 +8,7 @@ namespace CompanionApp.Services
     public interface IIntuneDataStore<T>
     {
         Task<bool> AssignUserAsync(T user, Guid deviceId);
+        Task<bool> UnAssignUserAsync(T user, Guid deviceId);
         Task<IEnumerable<T>> SearchUserAsync(string userName);
         Task<IEnumerable<T>> ListAllUsersAsync();
         Task LogOutUser();

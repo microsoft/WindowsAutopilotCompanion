@@ -9,6 +9,7 @@
         <Label Text="UserPrincipalName:" FontSize="Medium"  />
         <Label Text="{Binding UserPrincipalName}" FontSize="Medium"/>
         <Button Text="Assign User" Clicked="AddItem_Clicked"/>
+        <Button Text="UnAssign User" Clicked="AddItem_Clicked2"/>
         <Button Text="Scan another device? Click here" Clicked="AddItem_Clicked1"/>
     </StackLayout>
 </ContentPage>

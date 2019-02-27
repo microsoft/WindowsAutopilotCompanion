@@ -22,7 +22,12 @@ namespace CompanionApp.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<IEnumerable<User>> ListAllUsersAsync()
+        public async Task<bool> UnAssignUserAsync(User user, Guid deviceId)
+        {
+            return await Task.FromResult(true);
+        }
+
+    public async Task<IEnumerable<User>> ListAllUsersAsync()
         {
             return await Task.FromResult(users);
         }
