@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace CompanionApp.Services
 {
-    class MockIntuneDataStore : IIntuneDataStore<User>
+    class MockIntuneDataStore : IIntuneDataStore
     {
         List<User> users;
+        List<Device> devices;
         public MockIntuneDataStore()
         {
             users = new List<User>();
@@ -16,8 +17,16 @@ namespace CompanionApp.Services
             users.Add(new User() { DisplayName = "Manoj Jain3", GivenName = "Manoj3", Surname = "Jain3", UserPrincipalName = "manoj3@microsoft.com" });
             users.Add(new User() { DisplayName = "Manoj Jain4", GivenName = "Manoj4", Surname = "Jain4", UserPrincipalName = "manoj4@microsoft.com" });
 
-        }
+            devices = new List<Device>();
+            devices.Add(new Device() { SerialNumber = "100", Manufacturer = "Microsoft", Model = "Surface Book", PurchaseOrderNumber = "PO01", GroupTag = "My Group", DeploymentProfile = "User Driven AAD", ManagedDeviceCategory = "Unknown", AddressibleUserName = "Anna Anderson", UserPrincipalName = "anna@contosocm.com", ZtdId = Guid.NewGuid().ToString(), AzureActiveDirectoryDeviceId = Guid.NewGuid().ToString(), ManagedDeviceId = Guid.NewGuid().ToString() } );
+            devices.Add(new Device() { SerialNumber = "101", Manufacturer = "Microsoft", Model = "Surface Pro 6", PurchaseOrderNumber = "PO02", GroupTag = "My Second Group", DeploymentProfile = "User Driven AAD", ManagedDeviceCategory = "Unknown", AddressibleUserName = "Anna Anderson", UserPrincipalName = "anna@contosocm.com", ZtdId = Guid.NewGuid().ToString(), AzureActiveDirectoryDeviceId = Guid.NewGuid().ToString(), ManagedDeviceId = Guid.NewGuid().ToString() } );
+         }
         public async Task<bool> AssignUserAsync(User user, Guid deviceId)
+        {
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> UnAssignUserAsync(Guid deviceId)
         {
             return await Task.FromResult(true);
         }
@@ -46,5 +55,16 @@ namespace CompanionApp.Services
             i.TenantName = "contoso.onmicrosoft.com";
             return await Task.FromResult(i);
         }
+
+        public async Task<IEnumerable<Device>> SearchDevicesBySerialAsync(string serial)
+        {
+            return await Task.FromResult(devices);
+        }
+
+        public async Task<IEnumerable<Device>> SearchDevicesByZtdIdAsync(string ztdId)
+        {
+            return await Task.FromResult(devices.GetRange(0,1));
+        }
+
     }
 }

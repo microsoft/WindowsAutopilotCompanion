@@ -10,7 +10,7 @@ namespace CompanionApp.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IIntuneDataStore<User> DataStore => DependencyService.Get<IIntuneDataStore<User>>();
+        public IIntuneDataStore DataStore => DependencyService.Get<IIntuneDataStore>();
 
         bool isBusy = false;
         public bool IsBusy

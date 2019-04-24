@@ -1,7 +1,7 @@
 ﻿using CompanionApp.Model;
 using CompanionApp.ViewModel;
 using System;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,12 +12,19 @@ namespace CompanionApp.Views
     {
         UsersViewModel viewModel;
         string ztdid = string.Empty;
+        public TaskCompletionSource<bool> Completed
+        {
+            get; set;
+        }
+
         public UsersPage(string ztdId)
         {
             InitializeComponent();
 
             BindingContext = viewModel = new UsersViewModel();
             this.ztdid = ztdId;
+
+            Completed = new System.Threading.Tasks.TaskCompletionSource<bool>();
         }
 
         async void OnItemSelected(object sender, ItemTappedEventArgs args)
@@ -25,18 +32,19 @@ namespace CompanionApp.Views
             var item = args.Item as User;
 
             if (item == null)
+            {
+                this.User = null;
                 return;
+            }
+            this.User = item;
+            await Navigation.PopModalAsync();
+            this.Completed.SetResult(true);
 
-            item.Ztdid = this.ztdid;
-            await Navigation.PushAsync(new UserDetailsPage(new UserDetailViewModel(item)));
+            //item.Ztdid = this.ztdid;
+            //await Navigation.PushAsync(new UserDetailsPage(new UserDetailViewModel(item)));
 
-            // Manually deselect item.
-            UsersListView.SelectedItem = null;
-        }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await DisplayAlert("Add", "Hello Manoj", "Cancel");
+            //// Manually deselect item.
+            //UsersListView.SelectedItem = null;
         }
 
         protected override void OnAppearing()
@@ -46,5 +54,7 @@ namespace CompanionApp.Views
             if (viewModel.Users.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
         }
+
+        public User User { get; set; }
     }
 }

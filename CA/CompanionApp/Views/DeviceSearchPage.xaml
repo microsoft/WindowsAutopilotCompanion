@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CompanionApp.Views.DeviceSearchPage"
+             xmlns:vm="clr-namespace:CompanionApp.ViewModel"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <vm:DeviceSearchViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Serial number:" />
+            <Entry x:Name="SerialNumber" Placeholder="" />
+            <Button x:Name="Search" Text="Search" Clicked="Search_Clicked"/>
+            <Button x:Name="Scan" Text="Scan QR Code" Clicked="Scan_Clicked" VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

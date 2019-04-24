@@ -3,12 +3,9 @@
     public enum MenuItemType
     {
         Info,
-        ScanQR,
-        Browse,
+        DeviceSearch,
         About,
-        Logout,
-        UserDetailsPage,
-        UsersPage
+        Logout
     }
     public class HomeMenuItem
     {

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CompanionApp.Views.DevicePage"
+             Title="{Binding Device.SerialNumber}">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="7*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Text="Serial" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Device.SerialNumber}"  />
+                <Label Grid.Column="0" Grid.Row="1" Text="Manufacturer" />
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Device.Manufacturer}" />
+                <Label Grid.Column="0" Grid.Row="2" Text="Model" />
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Device.Model}" />
+                <Label Grid.Column="0" Grid.Row="3" Text="Purchase Order" />
+                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Device.PurchaseOrderNumber}" />
+                <Label Grid.Column="0" Grid.Row="4" Text="Group Tag" />
+                <Entry Grid.Column="1" Grid.Row="4" Text="{Binding Device.GroupTag}" />
+                <Label Grid.Column="0" Grid.Row="5" Text="Addressible Name" />
+                <Entry Grid.Column="1" Grid.Row="5" Text="{Binding Device.AddressibleUserName}" />
+                <Label Grid.Column="0" Grid.Row="6" Text="User Principal Name" />
+                <Label Grid.Column="1" Grid.Row="6" Text="{Binding Device.UserPrincipalName}" />
+                <Label Grid.Column="0" Grid.Row="7" Text="AAD Device ID" />
+                <Label Grid.Column="1" Grid.Row="7" Text="{Binding Device.AzureActiveDirectoryDeviceId}" />
+                <Label Grid.Column="0" Grid.Row="8" Text="Deployment Profile" />
+                <Label Grid.Column="1" Grid.Row="8" Text="{Binding Device.DeploymentProfile}" />
+                <Label Grid.Column="0" Grid.Row="9" Text="Intune Device ID" />
+                <Label Grid.Column="1" Grid.Row="9" Text="{Binding Device.ManagedDeviceId}" />
+                <Label Grid.Column="0" Grid.Row="10" Text="Device Category" />
+                <Entry Grid.Column="1" Grid.Row="10" Text="{Binding Device.ManagedDeviceCategory}" />
+                <Label Grid.Column="0" Grid.Row="11" Text="Autopilot Device ID" />
+                <Label Grid.Column="1" Grid.Row="11" Text="{Binding Device.ZtdId}" />
+                <Button x:Name="ChooseUser" Grid.Column="0" Grid.Row="12" Text="Choose new user" Clicked="ChooseUser_Clicked" />
+                <Button x:Name="RemoveUser" Grid.Column="1" Grid.Row="12" Text="Remove assigned user" Clicked="RemoveUser_Clicked" />
+                <Button x:Name="SaveChanges" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2" Text="Save changes" Clicked="SaveChanges_Clicked" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -18,7 +18,7 @@ namespace CompanionApp.Views
             menuItems = new List<HomeMenuItem>
             {
                 new HomeMenuItem {Id = MenuItemType.Info, Title="Info" },
-                new HomeMenuItem {Id = MenuItemType.ScanQR, Title="Scan QR Page" },
+                new HomeMenuItem {Id = MenuItemType.DeviceSearch, Title="Device Search" },
                 //new HomeMenuItem {Id = MenuItemType.Browse, Title="List User" },
                 new HomeMenuItem {Id = MenuItemType.Logout, Title="Logout" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About"}

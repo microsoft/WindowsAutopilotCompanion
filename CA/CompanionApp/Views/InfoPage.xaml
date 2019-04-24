@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:CompanionApp.ViewModel"
-             x:Class="CompanionApp.Views.InfoPage">
+             x:Class="CompanionApp.Views.InfoPage"
+             Title="{Binding Title}">
 
     <ContentPage.BindingContext>
         <vm:InfoViewModel />
@@ -16,8 +17,8 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="7*" />
                 </Grid.ColumnDefinitions>
                 <Label Text="Tenant ID:" Grid.Row="0" Grid.Column="0" />
                 <Label Text="{Binding Info.TenantID}" Grid.Row="0" Grid.Column="1" />

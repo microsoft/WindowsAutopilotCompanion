@@ -22,11 +22,14 @@ namespace CompanionApp.Views
             {
                 switch (id)
                 {
+                    case (int)MenuItemType.Info:
+                        MenuPages.Add(id, new NavigationPage(new InfoPage()));
+                        break;
                     case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
-                    case (int)MenuItemType.ScanQR:
-                        MenuPages.Add(id, new NavigationPage(new QrScanCodePage()));
+                    case (int)MenuItemType.DeviceSearch:
+                        MenuPages.Add(id, new NavigationPage(new DeviceSearchPage()));
                         break;
                     case (int)MenuItemType.Logout:
                         MenuPages.Add(id, new NavigationPage(new Logout()));
@@ -39,10 +42,10 @@ namespace CompanionApp.Views
             {
                 Detail = newPage;
 
-                if (Device.RuntimePlatform == Device.Android)
+                if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android)
                     await Task.Delay(100);
 
-                IsPresented = true;
+                IsPresented = false;
             }
         }
     }

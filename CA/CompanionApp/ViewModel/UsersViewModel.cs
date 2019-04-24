@@ -1,5 +1,6 @@
 ﻿using CompanionApp.Model;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -18,13 +19,6 @@ namespace CompanionApp.ViewModel
             Title = " ";
             Users = new ObservableCollection<User>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadUsersCommand());
-            //MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
-            //{
-            //    var newItem = item as Item;
-            //    Items.Add(newItem);
-            //    await DataStore.AddItemAsync(newItem);
-            //});
-
         }
 
        async Task ExecuteLoadUsersCommand()
@@ -37,7 +31,7 @@ namespace CompanionApp.ViewModel
             try
             {
                 Users.Clear();
-                var users = await DataStore.ListAllUsersAsync();
+                IEnumerable<User> users = await DataStore.ListAllUsersAsync();
                 foreach (var item in users)
                 {
                     Users.Add(item);

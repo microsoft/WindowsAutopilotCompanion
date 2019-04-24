@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CompanionApp.ViewModel;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ZXing;
@@ -12,16 +14,29 @@ using ZXing.Net.Mobile.Forms;
 
 namespace CompanionApp.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class QrScanCodePage : ContentPage
-    {
-        string ztdid = string.Empty;
-        public QrScanCodePage()
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class DeviceSearchPage : ContentPage
+	{
+		public DeviceSearchPage ()
+		{
+			InitializeComponent();
+		}
+
+        private async void Search_Clicked(object sender, EventArgs e)
         {
-            InitializeComponent();
-            ListButton.IsVisible = false;
+            DeviceListViewModel viewModel = new DeviceListViewModel();
+            viewModel.SerialNumber = this.SerialNumber.Text;
+            if (viewModel.Devices.Count == 1)
+            {
+                await Navigation.PushAsync(new DevicePage(viewModel.Devices[0]));
+            }
+            else
+            {
+                await Navigation.PushAsync(new DeviceListPage(viewModel));
+            }
         }
-        private async void Button_Clicked(object sender, EventArgs e)
+
+        private async void Scan_Clicked(object sender, EventArgs e)
         {
             var options = new MobileBarcodeScanningOptions
             {
@@ -43,28 +58,24 @@ namespace CompanionApp.Views
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await Navigation.PopAsync();
-                    LabelText1.Text = resultOfQrCode.Text;
+                    //LabelText1.Text = resultOfQrCode.Text;
                     // parse json here
-                    ztdid = GetDeviceId(resultOfQrCode.Text);
+                    String ztdid = GetDeviceId(resultOfQrCode.Text);
 
-                    if (!string.IsNullOrEmpty(ztdid))
-                    {
-                        ListButton.IsVisible = true;
-                    }
-                    else
+                    if (string.IsNullOrEmpty(ztdid))
                     {
                         await DisplayAlert("Device Unique Id", "No Unique ID Found. Please scan the valid QR Code", "OK");
                     }
+                    else
+                    {
+                        DeviceListViewModel viewModel = new DeviceListViewModel();
+                        viewModel.SerialNumber = ztdid;
+                        await Navigation.PushAsync(new DevicePage(viewModel.Devices[0]));
+                    }
                 });
             };
+
         }
-
-
-        private async void Button1_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new NavigationPage(new UsersPage(ztdid)));
-        }
-
         private string GetDeviceId(string jsonBlob)
         {
             string deviceUniqueId = string.Empty;
@@ -84,5 +95,6 @@ namespace CompanionApp.Views
             }
             return deviceUniqueId;
         }
+
     }
 }

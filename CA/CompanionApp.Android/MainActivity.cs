@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace CompanionApp.Droid
 {
-    [Activity(Label = "White Glove Companion App", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Windows Autopilot Companion App", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 	internal static Context CurrentContext { get; private set; }

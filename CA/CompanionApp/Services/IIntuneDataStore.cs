@@ -5,11 +5,14 @@ using System.Threading.Tasks;
 
 namespace CompanionApp.Services
 {
-    public interface IIntuneDataStore<T>
+    public interface IIntuneDataStore
     {
-        Task<bool> AssignUserAsync(T user, Guid deviceId);
-        Task<IEnumerable<T>> SearchUserAsync(string userName);
-        Task<IEnumerable<T>> ListAllUsersAsync();
+        Task<bool> AssignUserAsync(User user, Guid deviceId);
+        Task<bool> UnAssignUserAsync(Guid deviceId);
+        Task<IEnumerable<User>> SearchUserAsync(string userName);
+        Task<IEnumerable<Device>> SearchDevicesBySerialAsync(string serial);
+        Task<IEnumerable<Device>> SearchDevicesByZtdIdAsync(string ztdId);
+        Task<IEnumerable<User>> ListAllUsersAsync();
         Task LogOutUser();
         Task<Info> GetInfo();
     }
