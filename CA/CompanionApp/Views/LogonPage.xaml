@@ -13,9 +13,12 @@
         <StackLayout BackgroundColor="RoyalBlue">
             <Label Text="Windows Autopilot Companion" FontSize="30" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" />
             <Label x:Name="results" Text="{Binding Results}" />
-            <StackLayout Orientation="Horizontal" BackgroundColor="White">
-                <Button Text="Logon" HorizontalOptions="FillAndExpand" Command="{Binding LogonCommand}"></Button>
-                <Button Text="Demo" HorizontalOptions="FillAndExpand" Command="{Binding DemoCommand}"></Button>
+            <StackLayout>
+                <Label Text="Tenant:" />
+                <Entry x:Name="Tenant" Placeholder="(default)" Text="{Binding Tenant}" />
+                <Button Text="Logon" BackgroundColor="White" TextColor="RoyalBlue" HorizontalOptions="FillAndExpand" Command="{Binding LogonCommand}"></Button>
+                <Label></Label>
+                <Button Text="Demo" BackgroundColor="White" TextColor="RoyalBlue" HorizontalOptions="FillAndExpand" Command="{Binding DemoCommand}"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

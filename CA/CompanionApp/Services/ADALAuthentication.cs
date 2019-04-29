@@ -71,11 +71,12 @@ namespace CompanionApp.Services
             }
         }
 
-        public async Task<AuthenticationResultCode> Authenticate(string resource, string clientId, string returnUrl)
+        public async Task<AuthenticationResultCode> Authenticate(string tenant, string resource, string clientId, string returnUrl)
         {
             try
             {
-                AuthenticationContext ac = new AuthenticationContext("https://login.microsoftonline.com/common");
+                string authority = String.Format("https://login.microsoftonline.com/{0}", tenant);
+                AuthenticationContext ac = new AuthenticationContext(authority);
                 authResult = await ac.AcquireTokenAsync(resource, clientId, new Uri(returnUrl), platformParameters);
                 resultCode = AuthenticationResultCode.Succesfull;
             }

@@ -7,12 +7,12 @@ namespace CompanionApp.UWP
 {
     public class ADALAuthenticator : IADALAuthenticator
     {
-        public Task<AuthenticationResultCode> Authenticate(string resource, string clientId, string returnUri)
+        public Task<AuthenticationResultCode> Authenticate(string tenant, string resource, string clientId, string returnUri)
         {
             // IPlatformParameters PlatformParametersLogout = new PlatformParameters(PromptBehavior.Auto, true);
 
             ADALAuthentication.Instance.platformParameters = new PlatformParameters(PromptBehavior.SelectAccount, true);
-            return ADALAuthentication.Instance.Authenticate(resource, clientId, returnUri);
+            return ADALAuthentication.Instance.Authenticate(tenant, resource, clientId, returnUri);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace CompanionApp.ViewModel
         {
             Title = "Logon";
 
-            LogonCommand = new Command(() => this.PerformLogon());
+            LogonCommand = new Command(() => this.PerformLogon(tenant));
             DemoCommand = new Command(() => this.PerformDemo());
         }
 
@@ -25,16 +25,26 @@ namespace CompanionApp.ViewModel
             set { SetProperty(ref results, value); }
         }
 
-        public async void PerformLogon()
+        string tenant = string.Empty;
+        public string Tenant
+        {
+            get { return tenant; }
+            set { SetProperty(ref tenant, value); }
+        }
+
+        public async void PerformLogon(string tenant)
         {
             string applicationId = "4253c270-b756-4c48-9e28-8f202b6798ec";
             string authority = "https://graph.microsoft.com";
             string redirectUri = "urn:ietf:wg:oauth:2.0:oob";
+            string authTenant = "common";
+            if (!String.IsNullOrEmpty(tenant))
+                authTenant = tenant;
 
             DependencyService.Register<IntuneDataStore>();
 
             IADALAuthenticator auth = DependencyService.Get<IADALAuthenticator>();
-            AuthenticationResultCode code = await auth.Authenticate(authority, applicationId, redirectUri);
+            AuthenticationResultCode code = await auth.Authenticate(authTenant, authority, applicationId, redirectUri);
             switch (code)
             {
                 case AuthenticationResultCode.Succesfull:
