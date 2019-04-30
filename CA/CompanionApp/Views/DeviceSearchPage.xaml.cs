@@ -25,14 +25,21 @@ namespace CompanionApp.Views
         private async void Search_Clicked(object sender, EventArgs e)
         {
             DeviceListViewModel viewModel = new DeviceListViewModel();
-            viewModel.SerialNumber = this.SerialNumber.Text;
-            if (viewModel.Devices.Count == 1)
+            if (String.IsNullOrEmpty(this.SerialNumber.Text))
             {
-                await Navigation.PushAsync(new DevicePage(viewModel.Devices[0]));
+                await DisplayAlert("Invalid serial number", "At least one character must be specified.", "OK");
             }
             else
             {
-                await Navigation.PushAsync(new DeviceListPage(viewModel));
+                viewModel.SerialNumber = this.SerialNumber.Text;
+                if (viewModel.Devices.Count == 1)
+                {
+                    await Navigation.PushAsync(new DevicePage(viewModel.Devices[0]));
+                }
+                else
+                {
+                    await Navigation.PushAsync(new DeviceListPage(viewModel));
+                }
             }
         }
 

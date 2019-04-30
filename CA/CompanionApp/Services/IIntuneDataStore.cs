@@ -13,7 +13,9 @@ namespace CompanionApp.Services
         Task<IEnumerable<Device>> SearchDevicesBySerialAsync(string serial);
         Task<IEnumerable<Device>> SearchDevicesByZtdIdAsync(string ztdId);
         Task<IEnumerable<User>> ListAllUsersAsync();
+        Task<IEnumerable<DeviceCategory>> ListAllCategoriesAsync();
         Task LogOutUser();
         Task<Info> GetInfo();
+        Task<bool> AssignCategory(Device device);
     }
 }

@@ -1,4 +1,5 @@
-﻿using CompanionApp.ViewModel;
+﻿using CompanionApp.Model;
+using CompanionApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,13 @@ namespace CompanionApp.Views
             viewModel = new DeviceViewModel();
             viewModel.Device = device;
             BindingContext = this.viewModel;
+            int i = 0;
+            foreach (var item in device.CategoryList)
+            {
+                if (item.Id == device.ManagedDeviceCategoryId)
+                    this.DeviceCategory.SelectedIndex = i;
+                i++;
+            }
         }
 
         private async void SaveChanges_Clicked(object sender, EventArgs e)
@@ -43,6 +51,16 @@ namespace CompanionApp.Views
                 }
             }
 
+            DeviceCategory newCategory = (DeviceCategory)this.DeviceCategory.SelectedItem;
+            if (viewModel.Device.ManagedDeviceCategory != newCategory.DisplayName)
+            {
+                viewModel.Device.ManagedDeviceCategory = newCategory.DisplayName;
+                bool returnValue = await viewModel.DataStore.AssignCategory(viewModel.Device);
+                if (!returnValue)
+                {
+                    await DisplayAlert("Category Assigned Status", "Category assignement failed", "OK");
+                }
+            }
             await Navigation.PopAsync();
         }
 
@@ -62,6 +80,12 @@ namespace CompanionApp.Views
         {
             viewModel.Device.UserPrincipalName = String.Empty;
             viewModel.Device.AddressibleUserName = String.Empty;
+        }
+
+        private void DeviceCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DeviceCategory newCat = (DeviceCategory)DeviceCategory.SelectedItem;
+            viewModel.Device.ManagedDeviceCategoryId = newCat.Id;
         }
     }
 }

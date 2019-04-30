@@ -23,7 +23,7 @@
                 <Label Grid.Column="0" Grid.Row="3" Text="Purchase Order" />
                 <Label Grid.Column="1" Grid.Row="3" Text="{Binding Device.PurchaseOrderNumber}" />
                 <Label Grid.Column="0" Grid.Row="4" Text="Group Tag" />
-                <Entry Grid.Column="1" Grid.Row="4" Text="{Binding Device.GroupTag}" />
+                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Device.GroupTag}" />
                 <Label Grid.Column="0" Grid.Row="5" Text="Addressible Name" />
                 <Entry Grid.Column="1" Grid.Row="5" Text="{Binding Device.AddressibleUserName}" />
                 <Label Grid.Column="0" Grid.Row="6" Text="User Principal Name" />
@@ -35,12 +35,21 @@
                 <Label Grid.Column="0" Grid.Row="9" Text="Intune Device ID" />
                 <Label Grid.Column="1" Grid.Row="9" Text="{Binding Device.ManagedDeviceId}" />
                 <Label Grid.Column="0" Grid.Row="10" Text="Device Category" />
-                <Entry Grid.Column="1" Grid.Row="10" Text="{Binding Device.ManagedDeviceCategory}" />
+                <Picker x:Name="DeviceCategory" Grid.Column="1" Grid.Row="10" ItemsSource="{Binding Device.CategoryList, Mode=TwoWay}" ItemDisplayBinding="{Binding DisplayName}" SelectedIndexChanged="DeviceCategory_SelectedIndexChanged" />
                 <Label Grid.Column="0" Grid.Row="11" Text="Autopilot Device ID" />
                 <Label Grid.Column="1" Grid.Row="11" Text="{Binding Device.ZtdId}" />
-                <Button x:Name="ChooseUser" Grid.Column="0" Grid.Row="12" Text="Choose new user" Clicked="ChooseUser_Clicked" />
-                <Button x:Name="RemoveUser" Grid.Column="1" Grid.Row="12" Text="Remove assigned user" Clicked="RemoveUser_Clicked" />
-                <Button x:Name="SaveChanges" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2" Text="Save changes" Clicked="SaveChanges_Clicked" />
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="5*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="ChooseUser" Grid.Column="0" Grid.Row="0" Text="Choose new user" Clicked="ChooseUser_Clicked" />
+                <Button x:Name="RemoveUser" Grid.Column="1" Grid.Row="0" Text="Remove assigned user" Clicked="RemoveUser_Clicked" />
+                <Button x:Name="SaveChanges" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="Save changes" Clicked="SaveChanges_Clicked" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>
