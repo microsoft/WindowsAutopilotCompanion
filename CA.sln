@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanionApp.UWP", "CA\Comp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanionApp", "CA\CompanionApp\CompanionApp.csproj", "{67E1B2CC-6496-4207-BFBA-39C57C3A90EE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F7C858F0-11EB-4AAD-8674-8494CD3CD2F1}"
+	ProjectSection(SolutionItems) = preProject
+		NOTICE.md = NOTICE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
