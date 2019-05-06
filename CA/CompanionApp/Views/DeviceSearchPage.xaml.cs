@@ -76,7 +76,7 @@ namespace CompanionApp.Views
                     else
                     {
                         DeviceListViewModel viewModel = new DeviceListViewModel();
-                        viewModel.SerialNumber = ztdid;
+                        viewModel.ZtdId = ztdid;
                         await Navigation.PushAsync(new DevicePage(viewModel.Devices[0]));
                     }
                 });
@@ -94,7 +94,7 @@ namespace CompanionApp.Views
                 JToken validJson = JToken.Parse(jsonBlob);
 
                 // this identify is there is a ZtdId
-                deviceUniqueId = (string)validJson["ZtdId"];
+                deviceUniqueId = validJson["ZtdId"].Value<String>();
             }
             catch (Exception)
             {
