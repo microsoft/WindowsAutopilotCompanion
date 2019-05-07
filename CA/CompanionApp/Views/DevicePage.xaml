@@ -5,52 +5,54 @@
              Title="{Binding Device.SerialNumber}">
 
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="7*" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Text="Serial" />
-                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Device.SerialNumber}"  />
-                <Label Grid.Column="0" Grid.Row="1" Text="Manufacturer" />
-                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Device.Manufacturer}" />
-                <Label Grid.Column="0" Grid.Row="2" Text="Model" />
-                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Device.Model}" />
-                <Label Grid.Column="0" Grid.Row="3" Text="Purchase Order" />
-                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Device.PurchaseOrderNumber}" />
-                <Label Grid.Column="0" Grid.Row="4" Text="Group Tag" />
-                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Device.GroupTag}" />
-                <Label Grid.Column="0" Grid.Row="5" Text="Addressible Name" />
-                <Entry Grid.Column="1" Grid.Row="5" Text="{Binding Device.AddressibleUserName}" />
-                <Label Grid.Column="0" Grid.Row="6" Text="User Principal Name" />
-                <Label Grid.Column="1" Grid.Row="6" Text="{Binding Device.UserPrincipalName}" />
-                <Label Grid.Column="0" Grid.Row="7" Text="AAD Device ID" />
-                <Label Grid.Column="1" Grid.Row="7" Text="{Binding Device.AzureActiveDirectoryDeviceId}" />
-                <Label Grid.Column="0" Grid.Row="8" Text="Deployment Profile" />
-                <Label Grid.Column="1" Grid.Row="8" Text="{Binding Device.DeploymentProfile}" />
-                <Label Grid.Column="0" Grid.Row="9" Text="Intune Device ID" />
-                <Label Grid.Column="1" Grid.Row="9" Text="{Binding Device.ManagedDeviceId}" />
-                <Label Grid.Column="0" Grid.Row="10" Text="Device Category" />
-                <Picker x:Name="DeviceCategory" Grid.Column="1" Grid.Row="10" ItemsSource="{Binding Device.CategoryList, Mode=TwoWay}" ItemDisplayBinding="{Binding DisplayName}" SelectedIndexChanged="DeviceCategory_SelectedIndexChanged" />
-                <Label Grid.Column="0" Grid.Row="11" Text="Autopilot Device ID" />
-                <Label Grid.Column="1" Grid.Row="11" Text="{Binding Device.ZtdId}" />
-            </Grid>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*" />
-                    <ColumnDefinition Width="5*" />
-                </Grid.ColumnDefinitions>
-                <Button x:Name="ChooseUser" Grid.Column="0" Grid.Row="0" Text="Choose new user" Clicked="ChooseUser_Clicked" />
-                <Button x:Name="RemoveUser" Grid.Column="1" Grid.Row="0" Text="Remove assigned user" Clicked="RemoveUser_Clicked" />
-                <Button x:Name="SaveChanges" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="Save changes" Clicked="SaveChanges_Clicked" />
-            </Grid>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="7*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Text="Serial" />
+                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding Device.SerialNumber}"  />
+                    <Label Grid.Column="0" Grid.Row="1" Text="Manufacturer" />
+                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding Device.Manufacturer}" />
+                    <Label Grid.Column="0" Grid.Row="2" Text="Model" />
+                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding Device.Model}" />
+                    <Label Grid.Column="0" Grid.Row="3" Text="Purchase Order" />
+                    <Label Grid.Column="1" Grid.Row="3" Text="{Binding Device.PurchaseOrderNumber}" />
+                    <Label Grid.Column="0" Grid.Row="4" Text="Group Tag" />
+                    <Label Grid.Column="1" Grid.Row="4" Text="{Binding Device.GroupTag}" />
+                    <Label Grid.Column="0" Grid.Row="5" Text="Addressible Name" />
+                    <Entry Grid.Column="1" Grid.Row="5" Text="{Binding Device.AddressibleUserName}" />
+                    <Label Grid.Column="0" Grid.Row="6" Text="User Principal Name" />
+                    <Label Grid.Column="1" Grid.Row="6" Text="{Binding Device.UserPrincipalName}" />
+                    <Label Grid.Column="0" Grid.Row="7" Text="AAD Device ID" />
+                    <Label Grid.Column="1" Grid.Row="7" Text="{Binding Device.AzureActiveDirectoryDeviceId}" />
+                    <Label Grid.Column="0" Grid.Row="8" Text="Deployment Profile" />
+                    <Label Grid.Column="1" Grid.Row="8" Text="{Binding Device.DeploymentProfile}" />
+                    <Label Grid.Column="0" Grid.Row="9" Text="Intune Device ID" />
+                    <Label Grid.Column="1" Grid.Row="9" Text="{Binding Device.ManagedDeviceId}" />
+                    <Label Grid.Column="0" Grid.Row="10" Text="Device Category" />
+                    <Picker x:Name="DeviceCategory" Grid.Column="1" Grid.Row="10" ItemsSource="{Binding Device.CategoryList, Mode=TwoWay}" ItemDisplayBinding="{Binding DisplayName}" SelectedIndexChanged="DeviceCategory_SelectedIndexChanged" />
+                    <Label Grid.Column="0" Grid.Row="11" Text="Autopilot Device ID" />
+                    <Label Grid.Column="1" Grid.Row="11" Text="{Binding Device.ZtdId}" />
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="5*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="ChooseUser" Grid.Column="0" Grid.Row="0" Text="Choose new user" Clicked="ChooseUser_Clicked" />
+                    <Button x:Name="RemoveUser" Grid.Column="1" Grid.Row="0" Text="Remove assigned user" Clicked="RemoveUser_Clicked" />
+                    <Button x:Name="SaveChanges" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Text="Save changes" Clicked="SaveChanges_Clicked" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
