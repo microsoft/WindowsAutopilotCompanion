@@ -14,8 +14,10 @@ namespace CompanionApp.Model
         public string Model { get; set; }
         public string PurchaseOrderNumber { get; set; }
         public string AzureActiveDirectoryDeviceId { get; set; }
+        public string AzureActiveDirectoryDeviceName { get; set; }
         public string DeploymentProfile { get; set; }
         public string ManagedDeviceId { get; set; }
+        public string ManagedDeviceName { get; set; }
         public string ZtdId { get; set; }
 
         // Changeable through the UI

@@ -31,14 +31,18 @@
                     <Label Grid.Column="1" Grid.Row="6" Text="{Binding Device.UserPrincipalName}" />
                     <Label Grid.Column="0" Grid.Row="7" Text="AAD Device ID" />
                     <Label Grid.Column="1" Grid.Row="7" Text="{Binding Device.AzureActiveDirectoryDeviceId}" />
-                    <Label Grid.Column="0" Grid.Row="8" Text="Deployment Profile" />
-                    <Label Grid.Column="1" Grid.Row="8" Text="{Binding Device.DeploymentProfile}" />
-                    <Label Grid.Column="0" Grid.Row="9" Text="Intune Device ID" />
-                    <Label Grid.Column="1" Grid.Row="9" Text="{Binding Device.ManagedDeviceId}" />
-                    <Label Grid.Column="0" Grid.Row="10" Text="Device Category" />
-                    <Picker x:Name="DeviceCategory" Grid.Column="1" Grid.Row="10" ItemsSource="{Binding Device.CategoryList, Mode=TwoWay}" ItemDisplayBinding="{Binding DisplayName}" SelectedIndexChanged="DeviceCategory_SelectedIndexChanged" />
-                    <Label Grid.Column="0" Grid.Row="11" Text="Autopilot Device ID" />
-                    <Label Grid.Column="1" Grid.Row="11" Text="{Binding Device.ZtdId}" />
+                    <Label Grid.Column="0" Grid.Row="8" Text="AAD Device Name" />
+                    <Label Grid.Column="1" Grid.Row="8" Text="{Binding Device.AzureActiveDirectoryDeviceName}" />
+                    <Label Grid.Column="0" Grid.Row="9" Text="Deployment Profile" />
+                    <Label Grid.Column="1" Grid.Row="9" Text="{Binding Device.DeploymentProfile}" />
+                    <Label Grid.Column="0" Grid.Row="10" Text="Intune Device ID" />
+                    <Label Grid.Column="1" Grid.Row="10" Text="{Binding Device.ManagedDeviceId}" />
+                    <Label Grid.Column="0" Grid.Row="11" Text="Intune Device Name" />
+                    <Label Grid.Column="1" Grid.Row="11" Text="{Binding Device.ManagedDeviceName}" />
+                    <Label Grid.Column="0" Grid.Row="12" Text="Device Category" />
+                    <Picker x:Name="DeviceCategory" Grid.Column="1" Grid.Row="12" ItemsSource="{Binding Device.CategoryList, Mode=TwoWay}" ItemDisplayBinding="{Binding DisplayName}" SelectedIndexChanged="DeviceCategory_SelectedIndexChanged" />
+                    <Label Grid.Column="0" Grid.Row="13" Text="Autopilot Device ID" />
+                    <Label Grid.Column="1" Grid.Row="13" Text="{Binding Device.ZtdId}" />
                 </Grid>
                 <Grid>
                     <Grid.RowDefinitions>

@@ -34,7 +34,8 @@ namespace CompanionApp.ViewModel
 
         public async void PerformLogon(string tenant)
         {
-            string applicationId = "4253c270-b756-4c48-9e28-8f202b6798ec";
+            // Application ID from Intune samples (https://github.com/microsoftgraph/powershell-intune-samples)
+            string applicationId = "d1ddf0e4-d672-4dae-b554-9d5bdfd93547";
             string authority = "https://graph.microsoft.com";
             string redirectUri = "urn:ietf:wg:oauth:2.0:oob";
             string authTenant = "common";
@@ -47,11 +48,11 @@ namespace CompanionApp.ViewModel
             AuthenticationResultCode code = await auth.Authenticate(authTenant, authority, applicationId, redirectUri);
             switch (code)
             {
-                case AuthenticationResultCode.Succesfull:
+                case AuthenticationResultCode.Succesful:
                     Results = "Signed on as  " + ADALAuthentication.Instance.AuthResult.UserInfo.DisplayableId;
                     break;
 
-                case AuthenticationResultCode.Canceled:
+                case AuthenticationResultCode.Cancelled:
                     Results = "Logon cancelled";
                     break;
 

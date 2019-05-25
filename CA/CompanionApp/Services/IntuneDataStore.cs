@@ -196,17 +196,46 @@ namespace CompanionApp.Services
                 device.DeploymentProfile = autopilotToken["deploymentProfile"]["displayName"].Value<string>();
             }
 
-            // Get details from Intune device
-            var intuneDetails = await graphClient.GetStringAsync("https://graph.microsoft.com/v1.0/deviceManagement/managedDevices/" + device.ManagedDeviceId + "/deviceCategory");
-            JToken intuneToken = JsonConvert.DeserializeObject<JToken>(intuneDetails);
-
-            device.ManagedDeviceCategoryId = intuneToken["id"].Value<string>();
-            // Flaky, look up the name instead of this: device.ManagedDeviceCategory = intuneToken["displayName"].Value<string>();
-            foreach (DeviceCategory cat in categories)
+            // Get the AAD device details
+            try
             {
-                if (cat.Id == device.ManagedDeviceCategoryId)
-                    device.ManagedDeviceCategory = cat.DisplayName;
+                var aadDevice = await graphClient.GetStringAsync("https://graph.microsoft.com/v1.0/devices?$filter=deviceId eq '" + device.AzureActiveDirectoryDeviceId + "'");
+                JToken aadDevices = JsonConvert.DeserializeObject<JToken>(aadDevice);
+                JArray aadDeviceList = aadDevices["value"] as JArray;
+                device.AzureActiveDirectoryDeviceName = aadDeviceList[0]["displayName"].Value<string>();
             }
+            catch
+            {
+                device.AzureActiveDirectoryDeviceName = "";
+            }
+
+            // Get the Intune device details
+            try
+            {
+                var intuneDevice = await graphClient.GetStringAsync("https://graph.microsoft.com/v1.0/deviceManagement/managedDevices/" + device.ManagedDeviceId);
+                JToken intuneDeviceToken = JsonConvert.DeserializeObject<JToken>(intuneDevice);
+                device.ManagedDeviceName = intuneDeviceToken["deviceName"].Value<string>();
+
+                var intuneDeviceCategory = await graphClient.GetStringAsync("https://graph.microsoft.com/v1.0/deviceManagement/managedDevices/" + device.ManagedDeviceId + "/deviceCategory");
+                JToken intuneCategoryToken = JsonConvert.DeserializeObject<JToken>(intuneDeviceCategory);
+
+                device.ManagedDeviceCategoryId = intuneCategoryToken["id"].Value<string>();
+                // Flaky, look up the name instead of this: device.ManagedDeviceCategory = intuneToken["displayName"].Value<string>();
+                foreach (DeviceCategory cat in categories)
+                {
+                    if (cat.Id == device.ManagedDeviceCategoryId)
+                        device.ManagedDeviceCategory = cat.DisplayName;
+                }
+
+            }
+            catch
+            {
+                // Intune device not found
+                device.ManagedDeviceName = "";
+                device.ManagedDeviceCategoryId = "";
+                device.ManagedDeviceCategory = "";
+            }
+
             return device;
         }
 

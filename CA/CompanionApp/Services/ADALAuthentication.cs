@@ -8,8 +8,8 @@ namespace CompanionApp.Services
 {
     public enum AuthenticationResultCode
     {
-        Succesfull,
-        Canceled,
+        Succesful,
+        Cancelled,
         Denied,
         Unknown,
         None
@@ -78,14 +78,14 @@ namespace CompanionApp.Services
                 string authority = String.Format("https://login.microsoftonline.com/{0}", tenant);
                 AuthenticationContext ac = new AuthenticationContext(authority);
                 authResult = await ac.AcquireTokenAsync(resource, clientId, new Uri(returnUrl), platformParameters);
-                resultCode = AuthenticationResultCode.Succesfull;
+                resultCode = AuthenticationResultCode.Succesful;
             }
             catch (AdalException adalEx)
             {
                 switch (adalEx.ErrorCode)
                 {
                     case "authentication_canceled":
-                        resultCode = AuthenticationResultCode.Canceled;
+                        resultCode = AuthenticationResultCode.Cancelled;
                         break;
 
                     case "access_denied":
