@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="c512206c-4f66-40b9-90c8-636681989752" Publisher="CN=076defed-2014-4081-bad4-bc30d5e6aef9" Version="1.0.7.0" />
+  <Identity Name="c512206c-4f66-40b9-90c8-636681989752" Publisher="CN=076defed-2014-4081-bad4-bc30d5e6aef9" Version="1.0.12.0" />
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>CompanionApp_Testing.UWP</DisplayName>
@@ -31,5 +31,6 @@
     <Capability Name="internetClient" />
     <uap:Capability Name="picturesLibrary" />
     <DeviceCapability Name="webcam" />
+    <DeviceCapability Name="microphone"/>
   </Capabilities>
 </Package>

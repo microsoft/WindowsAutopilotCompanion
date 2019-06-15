@@ -202,7 +202,7 @@ AppPackages/
 BundleArtifacts/
 Package.StoreAssociation.xml
 _pkginfo.txt
-*.appx
+# *.appx
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
@@ -217,7 +217,7 @@ ClientBin/
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
-*.pfx
+# *.pfx
 *.publishsettings
 orleans.codegen.cs
 
