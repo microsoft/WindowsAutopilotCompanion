@@ -28,6 +28,9 @@
     <PackageCertificateThumbprint>0DA04017D16A504C5F8D868D401B98787F64C94D</PackageCertificateThumbprint>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -155,14 +158,14 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory">
-      <Version>5.0.5</Version>
+      <Version>5.2.4</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.8" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.9" />
     <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.2</Version>
+      <Version>12.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>3.6.0.344457</Version>
+      <Version>3.6.0.709228</Version>
     </PackageReference>
     <PackageReference Include="ZXing.Net.Mobile.Forms">
       <Version>2.4.1</Version>
