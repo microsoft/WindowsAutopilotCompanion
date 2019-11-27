@@ -24,23 +24,23 @@
                     <Label Grid.Column="0" Grid.Row="3" Text="Purchase Order" />
                     <Label Grid.Column="1" Grid.Row="3" Text="{Binding Device.PurchaseOrderNumber}" />
                     <Label Grid.Column="0" Grid.Row="4" Text="Group Tag" />
-                    <Label Grid.Column="1" Grid.Row="4" Text="{Binding Device.GroupTag}" />
-                    <Label Grid.Column="0" Grid.Row="5" Text="Addressible Name" />
-                    <Entry Grid.Column="1" Grid.Row="5" Text="{Binding Device.AddressibleUserName}" />
-                    <Label Grid.Column="0" Grid.Row="6" Text="User Principal Name" />
-                    <Label Grid.Column="1" Grid.Row="6" Text="{Binding Device.UserPrincipalName}" />
-                    <Label Grid.Column="0" Grid.Row="7" Text="AAD Device ID" />
-                    <Label Grid.Column="1" Grid.Row="7" Text="{Binding Device.AzureActiveDirectoryDeviceId}" />
-                    <Label Grid.Column="0" Grid.Row="8" Text="AAD Device Name" />
-                    <Label Grid.Column="1" Grid.Row="8" Text="{Binding Device.AzureActiveDirectoryDeviceName}" />
-                    <Label Grid.Column="0" Grid.Row="9" Text="Deployment Profile" />
-                    <Label Grid.Column="1" Grid.Row="9" Text="{Binding Device.DeploymentProfile}" />
-                    <Label Grid.Column="0" Grid.Row="10" Text="Intune Device ID" />
-                    <Label Grid.Column="1" Grid.Row="10" Text="{Binding Device.ManagedDeviceId}" />
-                    <Label Grid.Column="0" Grid.Row="11" Text="Intune Device Name" />
-                    <Label Grid.Column="1" Grid.Row="11" Text="{Binding Device.ManagedDeviceName}" />
-                    <Label Grid.Column="0" Grid.Row="12" Text="Device Category" />
-                    <Picker x:Name="DeviceCategory" Grid.Column="1" Grid.Row="12" ItemsSource="{Binding Device.CategoryList, Mode=TwoWay}" ItemDisplayBinding="{Binding DisplayName}" SelectedIndexChanged="DeviceCategory_SelectedIndexChanged" />
+                    <Entry Grid.Column="1" Grid.Row="4" Text="{Binding Device.GroupTag}" />
+                    <Label Grid.Column="0" Grid.Row="5" Text="Device Name" />
+                    <Entry Grid.Column="1" Grid.Row="5" Text="{Binding Device.DeviceName}" />
+                    <Label Grid.Column="0" Grid.Row="6" Text="Addressable Name" />
+                    <Entry Grid.Column="1" Grid.Row="6" Text="{Binding Device.AddressableUserName}" />
+                    <Label Grid.Column="0" Grid.Row="7" Text="User Principal Name" />
+                    <Label Grid.Column="1" Grid.Row="7" Text="{Binding Device.UserPrincipalName}" />
+                    <Label Grid.Column="0" Grid.Row="8" Text="AAD Device ID" />
+                    <Label Grid.Column="1" Grid.Row="8" Text="{Binding Device.AzureActiveDirectoryDeviceId}" />
+                    <Label Grid.Column="0" Grid.Row="9" Text="AAD Device Name" />
+                    <Label Grid.Column="1" Grid.Row="9" Text="{Binding Device.AzureActiveDirectoryDeviceName}" />
+                    <Label Grid.Column="0" Grid.Row="10" Text="Deployment Profile" />
+                    <Label Grid.Column="1" Grid.Row="10" Text="{Binding Device.DeploymentProfile}" />
+                    <Label Grid.Column="0" Grid.Row="11" Text="Intune Device ID" />
+                    <Label Grid.Column="1" Grid.Row="11" Text="{Binding Device.ManagedDeviceId}" />
+                    <Label Grid.Column="0" Grid.Row="12" Text="Intune Device Name" />
+                    <Label Grid.Column="1" Grid.Row="12" Text="{Binding Device.ManagedDeviceName}" />
                     <Label Grid.Column="0" Grid.Row="13" Text="Autopilot Device ID" />
                     <Label Grid.Column="1" Grid.Row="13" Text="{Binding Device.ZtdId}" />
                 </Grid>

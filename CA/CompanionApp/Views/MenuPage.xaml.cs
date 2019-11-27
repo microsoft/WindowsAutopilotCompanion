@@ -1,6 +1,7 @@
 ﻿using CompanionApp.Model;
+using CompanionApp.Services;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +20,7 @@ namespace CompanionApp.Views
             {
                 new HomeMenuItem {Id = MenuItemType.Info, Title="Info" },
                 new HomeMenuItem {Id = MenuItemType.DeviceSearch, Title="Device Search" },
-                //new HomeMenuItem {Id = MenuItemType.Browse, Title="List User" },
+                new HomeMenuItem {Id = MenuItemType.Sync, Title="Sync" },
                 new HomeMenuItem {Id = MenuItemType.Logout, Title="Logout" },
                 new HomeMenuItem {Id = MenuItemType.About, Title="About"}
             };
@@ -39,6 +40,13 @@ namespace CompanionApp.Views
                     ListViewMenu.IsVisible = false;
                     ListViewMenu.SeparatorVisibility = SeparatorVisibility.None;
                     RootPage.Master.IsVisible = false;
+                }
+                else if (((HomeMenuItem)e.SelectedItem).Id == MenuItemType.Sync)
+                {
+                    IIntuneDataStore dataStore = DependencyService.Get<IIntuneDataStore>();
+                    Task task = Task.Run(async () => await dataStore.Sync());
+                    RootPage.IsPresented = false;
+                    return;
                 }
                 await RootPage.NavigateFromMenu(id);
             };

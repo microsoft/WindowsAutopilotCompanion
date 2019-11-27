@@ -20,11 +20,5 @@ namespace CompanionApp.ViewModel
             get;
             set;
         }
-
-        public IEnumerable<Model.DeviceCategory> CategoryList
-        {
-            get;
-            set;
-        }
     }
 }

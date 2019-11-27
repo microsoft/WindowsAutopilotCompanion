@@ -23,44 +23,16 @@ namespace CompanionApp.Views
             viewModel = new DeviceViewModel();
             viewModel.Device = device;
             BindingContext = this.viewModel;
-            int i = 0;
-            foreach (var item in device.CategoryList)
-            {
-                if (item.Id == device.ManagedDeviceCategoryId)
-                    this.DeviceCategory.SelectedIndex = i;
-                i++;
-            }
         }
 
         private async void SaveChanges_Clicked(object sender, EventArgs e)
         {
-            if (viewModel.Device.UserPrincipalName == String.Empty)
+            bool returnValue = await viewModel.DataStore.UpdateDeviceAsync(viewModel.Device);
+            if (!returnValue)
             {
-                bool returnValue = await viewModel.DataStore.UnAssignUserAsync(new Guid(viewModel.Device.ZtdId));
-                if (!returnValue)
-                {
-                    await DisplayAlert("User Unassigned Status", "User unassignement failed", "OK");
-                }
-            }
-            else
-            {
-                bool returnValue = await viewModel.DataStore.AssignUserAsync(new Model.User() { DisplayName = viewModel.Device.AddressibleUserName, UserPrincipalName = viewModel.Device.UserPrincipalName }, new Guid(viewModel.Device.ZtdId));
-                if (!returnValue)
-                {
-                    await DisplayAlert("User Assigned Status", "User assignement failed", "OK");
-                }
+                await DisplayAlert("Device settings update", "Device settings update failed.", "OK");
             }
 
-            DeviceCategory newCategory = (DeviceCategory)this.DeviceCategory.SelectedItem;
-            if (viewModel.Device.ManagedDeviceCategory != newCategory.DisplayName)
-            {
-                viewModel.Device.ManagedDeviceCategory = newCategory.DisplayName;
-                bool returnValue = await viewModel.DataStore.AssignCategory(viewModel.Device);
-                if (!returnValue)
-                {
-                    await DisplayAlert("Category Assigned Status", "Category assignement failed", "OK");
-                }
-            }
             await Navigation.PopAsync();
         }
 
@@ -72,20 +44,14 @@ namespace CompanionApp.Views
             if (user.User != null)
             {
                 viewModel.Device.UserPrincipalName = user.User.UserPrincipalName;
-                viewModel.Device.AddressibleUserName = user.User.DisplayName;
+                viewModel.Device.AddressableUserName = user.User.DisplayName;
             }
         }
 
         private void RemoveUser_Clicked(object sender, EventArgs e)
         {
             viewModel.Device.UserPrincipalName = String.Empty;
-            viewModel.Device.AddressibleUserName = String.Empty;
-        }
-
-        private void DeviceCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DeviceCategory newCat = (DeviceCategory)DeviceCategory.SelectedItem;
-            viewModel.Device.ManagedDeviceCategoryId = newCat.Id;
+            viewModel.Device.AddressableUserName = String.Empty;
         }
     }
 }

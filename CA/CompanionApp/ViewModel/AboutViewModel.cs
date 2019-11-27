@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CompanionApp.ViewModel
@@ -10,7 +11,7 @@ namespace CompanionApp.ViewModel
         {
             Title = "About";
 
-            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://aka.ms/WindowsAutopilotDocs")));
+            OpenWebCommand = new Command(() => Browser.OpenAsync("https://aka.ms/WindowsAutopilotDocs"));
         }
 
         public ICommand OpenWebCommand { get; }

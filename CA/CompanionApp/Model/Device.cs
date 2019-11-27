@@ -22,24 +22,10 @@ namespace CompanionApp.Model
 
         // Changeable through the UI
         public string GroupTag { get; set; }
-
-        // Changeable through external methods (hence the need for OnPropertyChanged)
-        public string localCategory;
-        public string ManagedDeviceCategory
-        {
-            get
-            {
-                return localCategory;
-            }
-            set
-            {
-                SetProperty(ref localCategory, value);
-            }
-        }
-        public string ManagedDeviceCategoryId { get; set; }
+        public string DeviceName { get; set; }
 
         private string localAUN;
-        public string AddressibleUserName
+        public string AddressableUserName
         {
             get
             {
@@ -89,7 +75,5 @@ namespace CompanionApp.Model
         }
         #endregion
 
-        public IEnumerable<DeviceCategory> CategoryList
-        { get; set; }
     }
 }

@@ -4,6 +4,7 @@
     {
         Info,
         DeviceSearch,
+        Sync,
         About,
         Logout
     }

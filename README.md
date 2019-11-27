@@ -7,11 +7,8 @@ This repository contains a sample app that can be used to modify the settings of
 The app supports simple configuration adjustments:
 
 - Add, remove, or change the user assigned to the Windows Autopilot device.
-- Configure the device category assigned to the device.  (Note that this category will be set on the Azure AD device object when the device enrolls in Intune.)
-
-Expected future additions (once supported by Windows Autopilot and Intune):
-
-- Editing of the group tag (order ID value) and computer name.
+- Configure the group tag for the device.
+- Configure the device name (computer name) that should be assigned to the device when it is deployed.
 
 This application leverages Xamarin in order to create a cross-platform app.  This will run on Windows 10, Android, and iOS devices.  For pre-built binaries, see the "Drops" folder.  (These are provided as-is.)
 

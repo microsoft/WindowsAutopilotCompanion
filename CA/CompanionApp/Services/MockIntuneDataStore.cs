@@ -9,7 +9,6 @@ namespace CompanionApp.Services
     {
         List<User> users;
         List<Device> devices;
-        List<DeviceCategory> categories;
 
         public MockIntuneDataStore()
         {
@@ -19,22 +18,12 @@ namespace CompanionApp.Services
             users.Add(new User() { DisplayName = "Manoj Jain3", GivenName = "Manoj3", Surname = "Jain3", UserPrincipalName = "manoj3@microsoft.com" });
             users.Add(new User() { DisplayName = "Manoj Jain4", GivenName = "Manoj4", Surname = "Jain4", UserPrincipalName = "manoj4@microsoft.com" });
 
-            categories = new List<DeviceCategory>();
-            categories.Add(new DeviceCategory() { Id = Guid.Empty.ToString(), DisplayName = "Unassigned" });
-            categories.Add(new DeviceCategory() { Id = "1", DisplayName = "One" });
-            categories.Add(new DeviceCategory() { Id = "2", DisplayName = "Two" });
-
             devices = new List<Device>();
-            devices.Add(new Device() { SerialNumber = "100", Manufacturer = "Microsoft", Model = "Surface Book", PurchaseOrderNumber = "PO01", GroupTag = "My Group", DeploymentProfile = "User Driven AAD", ManagedDeviceCategory = "One", ManagedDeviceCategoryId = "1", AddressibleUserName = "Anna Anderson", UserPrincipalName = "anna@contosocm.com", ZtdId = Guid.NewGuid().ToString(), AzureActiveDirectoryDeviceId = Guid.NewGuid().ToString(), ManagedDeviceId = Guid.NewGuid().ToString(), CategoryList = categories } );
-            devices.Add(new Device() { SerialNumber = "101", Manufacturer = "Microsoft", Model = "Surface Pro 6", PurchaseOrderNumber = "PO02", GroupTag = "My Second Group", DeploymentProfile = "User Driven AAD", ManagedDeviceCategory = "Unknown", ManagedDeviceCategoryId = "2", AddressibleUserName = "Anna Anderson", UserPrincipalName = "anna@contosocm.com", ZtdId = Guid.NewGuid().ToString(), AzureActiveDirectoryDeviceId = Guid.NewGuid().ToString(), ManagedDeviceId = Guid.NewGuid().ToString(), CategoryList = categories } );
+            devices.Add(new Device() { SerialNumber = "100", Manufacturer = "Microsoft", Model = "Surface Book", PurchaseOrderNumber = "PO01", GroupTag = "My Group", DeploymentProfile = "User Driven AAD", AddressableUserName = "Anna Anderson", UserPrincipalName = "anna@contosocm.com", ZtdId = Guid.NewGuid().ToString(), AzureActiveDirectoryDeviceId = Guid.NewGuid().ToString(), ManagedDeviceId = Guid.NewGuid().ToString() } );
+            devices.Add(new Device() { SerialNumber = "101", Manufacturer = "Microsoft", Model = "Surface Pro 6", PurchaseOrderNumber = "PO02", GroupTag = "My Second Group", DeploymentProfile = "User Driven AAD", AddressableUserName = "Anna Anderson", UserPrincipalName = "anna@contosocm.com", ZtdId = Guid.NewGuid().ToString(), AzureActiveDirectoryDeviceId = Guid.NewGuid().ToString(), ManagedDeviceId = Guid.NewGuid().ToString() } );
         }
 
-        public async Task<bool> AssignUserAsync(User user, Guid deviceId)
-        {
-            return await Task.FromResult(true);
-        }
-
-        public async Task<bool> UnAssignUserAsync(Guid deviceId)
+        public async Task<bool> UpdateDeviceAsync(Device device)
         {
             return await Task.FromResult(true);
         }
@@ -44,9 +33,9 @@ namespace CompanionApp.Services
             return await Task.FromResult(users);
         }
 
-        public async Task<IEnumerable<DeviceCategory>> ListAllCategoriesAsync()
+        public Task Sync()
         {
-            return await Task.FromResult(categories);
+            return null;
         }
 
         public Task LogOutUser()
@@ -78,11 +67,5 @@ namespace CompanionApp.Services
         {
             return await Task.FromResult(devices.GetRange(0,1));
         }
-
-        public async Task<bool> AssignCategory(Device device)
-        {
-            return await Task.FromResult(true);
-        }
-
     }
 }
